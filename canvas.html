@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas学习</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="200" height="100" style="border:1px solid red"></canvas>
+  <canvas id="mycanvas1" width="200" height="100" style="border:1px solid red"></canvas>
+  <canvas id="mycanvas2" width="200" height="100" style="border:1px solid red"></canvas>
+  <script type="text/javascript">
+    var c = document.getElementById('mycanvas');
+    var ctx = c.getContext('2d');
+    
+    ctx.moveTo(0 ,0);
+    ctx.lineTo(200, 100);
+    ctx.stroke();
+  </script>
+</body>
+</html>
