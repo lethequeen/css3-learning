@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas></canvas>
+</body>
+<script type="text/javascript">
+  const canvas = document.getElementsByTagName('canvas')[0],
+        ctx = canvas.getContext('2d'),
+        wWidth = window.innerWidth,
+        wHeight = window.innerHeight,
+        RIBBON_WIDE = 90,
+        PI_2 = Math.PI * 2,
+        Cos = Math.cos,
+        Random = Math.random;
+  let path, r = 0;
+
+  canvas.width = wWidth;
+  canvas.height = wHeight;
+  ctx.globalAlpha = 0.6;
+
+  function init () {
+    ctx.clearRect(0, 0, wWidth, wHeight);
+    path = [{x: 0, y: wHeight * 0.7 + RIBBON_WIDE}, {x: 0, y: wHeight * 0.7 - RIBBON_WIDE}];
+
+    while (path[1].x < wWidth + RIBBON_WIDE) {
+      draw(path[0], path[1])     // 调用绘制方法
+    }
+  }
+
+  function draw(start, end) {
+    ctx.beginPath();
+    ctx.moveTo(start.x, start.y);
+    ctx.lineTo(end.x, end.y);
+    const nextX = end.x + (Random() * 2) * RIBBON_WIDE,
+          nextY = geneY(end.y);
+    ctx.lineTo(nextX, nextY);
+    ctx.closePath();
+    r += PI_2 / 50;
+
+    ctx.fillStyle = '#' + (Cos(r) * 127 + 128 << 16 | Cos(r + PI_2 / 3) * 127 + 128 << 8 | Cos(r + PI_2 / 3 * 2) * 127 + 128).toString(16);
+    console.log(Cos(r) * 128 + 128 << 16 | Cos(r + PI_2 / 3) * 127 + 128 << 8);
+    console.log((Cos(r) * 128 + 128 << 16 | Cos(r + PI_2 / 3) * 127 + 128 << 8 | Cos(r + PI_2 / 3 * 2) * 127 + 128).toString(16));
+    ctx.fill();
+    path[0] = path[1];
+    path[1] = {x: nextX, y: nextY};
+   }
+
+   function geneY(y) {
+      let temp = y + (Random() * 2 - 1) * RIBBON_WIDE;
+      return (temp > wHeight || temp < 0) ? geneY(y) : temp;
+   }
+
+   document.onclick = init;
+   init();
+</script>
+</html>
