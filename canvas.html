@@ -11,6 +11,12 @@
   <canvas id="mycanvas4" width="200" height="100" style="border:1px solid red"></canvas>
   <canvas id="mycanvas5" width="200" height="100" style="border:1px solid red"></canvas>
   <canvas id="mycanvas6" width="200" height="100" style="border:1px solid red"></canvas>
+  <canvas id="mycanvas7" width="200" height="100" style="border:1px solid red"></canvas>
+  <img id="scream" src="1.jpg" />
+  <canvas id="mycanvas8" width="200" height="100" style="border:1px solid red"></canvas>
+  <canvas id="mycanvas9" width="200" height="100" style="border:1px solid red"></canvas>
+  <canvas id="mycanvas10" width="200" height="100" style="border:1px solid red"></canvas>
+  <canvas id="mycanvas11" width="200" height="100" style="border:1px solid red"></canvas>
   <script type="text/javascript">
     var c = document.getElementById('mycanvas');
     var ctx = c.getContext('2d');
@@ -61,7 +67,19 @@
     ctx.fillRect(10, 10, 150, 80);
 
 
-    var c = document.getElementById('')
+    var c = document.getElementById('mycanvas7');
+    var ctx = c.getContext('2d');
+    var img = document.getElementById("scream");
+    ctx.drawImage(img, 10, 10);
+
+
+    var c = document.getElementById('mycanvas8');
+    var ctx = c.getContext('2d');
+    var grd = ctx.createRadialGradient(150, 150, 5, 150, 150, 100);
+    grd.addColorStop(0, "pink");
+    grd.addColorStop(1, "white");
+    ctx.fillStyle = grd;
+    ctx.fillRect(50, 50, 250, 250);
 
 
   </script>
